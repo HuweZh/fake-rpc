@@ -1,0 +1,2 @@
+netty=com.huhusw.remoting.transport.netty.client.NettyRpcClient
+socket=com.huhusw.remoting.transport.socket.SocketRpcClient

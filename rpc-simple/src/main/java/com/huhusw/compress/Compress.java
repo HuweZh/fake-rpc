@@ -1,7 +1,14 @@
 package com.huhusw.compress;
 
-public class Compress {
-//    public static void main(String[] args) {
-//        System.out.println("hello world!");
-//    }
+
+import com.huhusw.extension.SPI;
+
+@SPI
+public interface Compress {
+
+    byte[] compress(byte[] bytes);
+
+
+    byte[] decompress(byte[] bytes);
 }
+

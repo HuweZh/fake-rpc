@@ -12,6 +12,7 @@
         <module>rpc-common</module>
         <module>example-client</module>
         <module>hello-service-api</module>
+        <module>example-server</module>
     </modules>
     <packaging>pom</packaging>
 

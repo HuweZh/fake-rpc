@@ -1,7 +1,9 @@
 package com.huhusw;
 
+import com.huhusw.config.RpcServiceConfig;
+import com.huhusw.proxy.RpcClientProxy;
 import com.huhusw.remoting.transport.RpcRequestTransport;
-import com.huhusw.remoting.socket.SocketRpcClient;
+import com.huhusw.remoting.transport.socket.SocketRpcClient;
 
 public class SocketClientMain {
     public static void main(String[] args) {
