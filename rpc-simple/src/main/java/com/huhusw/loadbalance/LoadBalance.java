@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Interface to the load balancing policy
+ * 负载均衡策略的接口
  */
 @SPI
 public interface LoadBalance {

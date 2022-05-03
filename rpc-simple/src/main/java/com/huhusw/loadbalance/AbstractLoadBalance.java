@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Abstract class for a load balancing policy
+ * 负载均衡策略的抽象类
  */
 public abstract class AbstractLoadBalance implements LoadBalance {
     @Override
@@ -20,6 +21,13 @@ public abstract class AbstractLoadBalance implements LoadBalance {
         return doSelect(serviceAddresses, rpcRequest);
     }
 
+    /**
+     * 选择一个均衡策略
+     *
+     * @param serviceAddresses
+     * @param rpcRequest
+     * @return
+     */
     protected abstract String doSelect(List<String> serviceAddresses, RpcRequest rpcRequest);
 
 }

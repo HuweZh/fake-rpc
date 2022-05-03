@@ -16,6 +16,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 服务提供者的具体实现类
+ * 包含添加服务、获取服务、发布服务
+ */
 @Slf4j
 public class ZkServiceProviderImpl implements ServiceProvider {
     /**

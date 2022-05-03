@@ -4,6 +4,7 @@ import com.huhusw.config.RpcServiceConfig;
 
 /**
  * store and provide service object.
+ * 保存和提供服务对象
  */
 public interface ServiceProvider {
     /**

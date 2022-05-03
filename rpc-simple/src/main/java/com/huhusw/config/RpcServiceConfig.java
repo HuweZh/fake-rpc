@@ -1,8 +1,16 @@
 package com.huhusw.config;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+/**
+ * RpcService的配置类
+ */
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@ToString
 public class RpcServiceConfig {
     /**
      * service version
@@ -10,6 +18,7 @@ public class RpcServiceConfig {
     private String version = "";
     /**
      * when the interface has multiple implementation classes, distinguish by group
+     * 当接口有多个实现类时，用组来区分
      */
     private String group = "";
 

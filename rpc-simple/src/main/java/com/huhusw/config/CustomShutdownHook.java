@@ -11,15 +11,23 @@ import java.net.UnknownHostException;
 
 /**
  * When the server  is closed, do something such as unregister all services
+ * 关闭服务时调用的钩子方法
+ * 单例模式
  */
 @Slf4j
 public class CustomShutdownHook {
+    //单例模式，饿汉式，直接创建对象
     private static final CustomShutdownHook CUSTOM_SHUTDOWN_HOOK = new CustomShutdownHook();
 
+    //返回对象
     public static CustomShutdownHook getCustomShutdownHook() {
         return CUSTOM_SHUTDOWN_HOOK;
     }
 
+    /**
+     * 清除所有的已注册服务
+     * 新建线程清除所有已注册服务
+     */
     public void clearAll() {
         log.info("addShutdownHook for clearAll");
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
