@@ -4,7 +4,9 @@ import java.lang.annotation.*;
 
 /**
  * RPC service annotation, marked on the service implementation class
+ * RPC服务注解，标注在服务实现类上
  */
+//四个元注解
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
