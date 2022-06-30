@@ -15,20 +15,31 @@ import java.net.InetSocketAddress;
 import java.util.List;
 
 /**
- * service discovery based on zookeeper
+ * 基于zookeeper的服务发现
  */
 @Slf4j
 public class ZkServiceDiscoveryImpl implements ServiceDiscovery {
+    //负载均衡策略
     private final LoadBalance loadBalance;
 
     public ZkServiceDiscoveryImpl() {
+        //获取负载均衡策略
         this.loadBalance = ExtensionLoader.getExtensionLoader(LoadBalance.class).getExtension("loadBalance");
     }
 
+    /**
+     * 服务发现
+     *
+     * @param rpcRequest rpc service pojo
+     * @return
+     */
     @Override
     public InetSocketAddress lookupService(RpcRequest rpcRequest) {
+        //获取服务名称
         String rpcServiceName = rpcRequest.getRpcServiceName();
+        //获取zk客户端
         CuratorFramework zkClient = CuratorUtils.getZkClient();
+        //根据名称获取服务
         List<String> serviceUrlList = CuratorUtils.getChildrenNodes(zkClient, rpcServiceName);
         if (CollectionUtil.isEmpty(serviceUrlList)) {
             throw new RpcException(RpcErrorMessageEnum.SERVICE_CAN_NOT_BE_FOUND, rpcServiceName);
@@ -36,6 +47,7 @@ public class ZkServiceDiscoveryImpl implements ServiceDiscovery {
         // load balancing
         String targetServiceUrl = loadBalance.selectServiceAddress(serviceUrlList, rpcRequest);
         log.info("Successfully found the service address:[{}]", targetServiceUrl);
+        //获取地址和端口
         String[] socketAddressArray = targetServiceUrl.split(":");
         String host = socketAddressArray[0];
         int port = Integer.parseInt(socketAddressArray[1]);

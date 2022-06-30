@@ -8,7 +8,7 @@ import org.apache.curator.framework.CuratorFramework;
 import java.net.InetSocketAddress;
 
 /**
- * service registration  based on zookeeper
+ * zookeeper服务注册
  */
 @Slf4j
 public class ZkServiceRegistryImpl implements ServiceRegistry {

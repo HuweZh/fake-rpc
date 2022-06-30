@@ -5,10 +5,13 @@ import com.huhusw.remoting.dto.RpcRequest;
 
 import java.net.InetSocketAddress;
 
+/**
+ * 服务发现
+ */
 @SPI
 public interface ServiceDiscovery {
     /**
-     * lookup service by rpcServiceName
+     * 通过服务名称进行服务发现
      *
      * @param rpcRequest rpc service pojo
      * @return service address

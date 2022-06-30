@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 /**
- * Hessian is a dynamically-typed, binary serialization and Web Services protocol designed for object-oriented transmission.
+ * Hessian是一个动态类型的、二进制的序列化和网络服务协议，为面向对象的传输而设计。
  */
 public class HessianSerializer implements Serializer {
     @Override

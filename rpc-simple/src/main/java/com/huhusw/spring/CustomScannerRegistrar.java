@@ -13,7 +13,6 @@ import org.springframework.core.type.StandardAnnotationMetadata;
 import org.springframework.stereotype.Component;
 
 /**
- * scan and filter specified annotations
  * 扫描和过滤特定注解
  */
 @Slf4j
@@ -30,20 +29,20 @@ public class CustomScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry registry) {
-        //get the attributes and values of RpcScan annotation
+        //获取RpcScan注解的属性和值
         AnnotationAttributes rpcScanAnnotationAttributes = AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(RpcScan.class.getName()));
         String[] rpcScanBasePackages = new String[0];
         if (rpcScanAnnotationAttributes != null) {
-            // get the value of the basePackage property
+            // 获取basePackage的值
             rpcScanBasePackages = rpcScanAnnotationAttributes.getStringArray(BASE_PACKAGE_ATTRIBUTE_NAME);
         }
         //注解没有指定扫描的包，默认扫描annotationMetadata对应的包
         if (rpcScanBasePackages.length == 0) {
             rpcScanBasePackages = new String[]{((StandardAnnotationMetadata) (annotationMetadata)).getIntrospectedClass().getPackage().getName()};
         }
-        // Scan the RpcService annotation
+        // 扫描RpcService注解
         CustomScanner rpcServiceScanner = new CustomScanner(registry, RpcService.class);
-        // Scan the Component annotation
+        // 扫描Component注解
         CustomScanner springBeanScanner = new CustomScanner(registry, Component.class);
         if (resourceLoader != null) {
             rpcServiceScanner.setResourceLoader(resourceLoader);

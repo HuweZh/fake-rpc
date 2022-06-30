@@ -8,15 +8,18 @@ public class RpcConstants {
 
     /**
      * Magic number. Verify RpcMessage
+     * 自制协议头，一个魔数
      */
     public static final byte[] MAGIC_NUMBER = {(byte) 'g', (byte) 'r', (byte) 'p', (byte) 'c'};
+    //默认字符集
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
     //version information
     public static final byte VERSION = 1;
     public static final byte TOTAL_LENGTH = 16;
+    //请求和回复
     public static final byte REQUEST_TYPE = 1;
     public static final byte RESPONSE_TYPE = 2;
-    //ping
+    //ping，心跳检测
     public static final byte HEARTBEAT_REQUEST_TYPE = 3;
     //pong
     public static final byte HEARTBEAT_RESPONSE_TYPE = 4;

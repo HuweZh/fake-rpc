@@ -26,7 +26,7 @@ public class RpcRequestHandler {
     }
 
     /**
-     * Processing rpcRequest: call the corresponding method, and then return the method
+     * 处理rpc请求：调用相关方法，并返回方法的执行
      */
     public Object handle(RpcRequest rpcRequest) {
         Object service = serviceProvider.getService(rpcRequest.getRpcServiceName());
@@ -34,11 +34,11 @@ public class RpcRequestHandler {
     }
 
     /**
-     * get method execution results
+     * 获取方法执行的结果
      *
-     * @param rpcRequest client request
-     * @param service    service object
-     * @return the result of the target method execution
+     * @param rpcRequest 客户端的请求
+     * @param service    服务对象
+     * @return 方法执行的结果
      */
     private Object invokeTargetMethod(RpcRequest rpcRequest, Object service) {
         Object result;

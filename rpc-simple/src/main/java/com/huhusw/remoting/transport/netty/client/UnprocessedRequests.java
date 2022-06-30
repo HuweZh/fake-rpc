@@ -7,7 +7,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * unprocessed requests by the server.
  * 未被服务器处理的请求。
  */
 public class UnprocessedRequests {

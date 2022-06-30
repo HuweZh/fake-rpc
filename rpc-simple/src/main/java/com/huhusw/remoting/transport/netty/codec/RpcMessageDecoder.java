@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Arrays;
 
 /**
- * custom protocol decoder
+ * 自定义协议解码器
  * <pre>
  *   0     1     2     3     4        5     6     7     8         9          10      11     12  13  14   15 16
  *   +-----+-----+-----+-----+--------+----+----+----+------+-----------+-------+----- --+-----+-----+-------+
@@ -33,7 +33,7 @@ import java.util.Arrays;
  * body（object类型数据）
  * </pre>
  * <p>
- * {@link LengthFieldBasedFrameDecoder} is a length-based decoder , used to solve TCP unpacking and sticking problems.
+ * {@link LengthFieldBasedFrameDecoder} 基于长度的解码器，用来处理TCP解包和粘包问题
  * </p>
  *
  * @see <a href="https://zhuanlan.zhihu.com/p/95621344">LengthFieldBasedFrameDecoder解码器</a>
@@ -41,22 +41,19 @@ import java.util.Arrays;
 @Slf4j
 public class RpcMessageDecoder extends LengthFieldBasedFrameDecoder {
     public RpcMessageDecoder() {
-        // lengthFieldOffset: magic code is 4B, and version is 1B, and then full length. so value is 5
-        // lengthFieldLength: full length is 4B. so value is 4
-        // lengthAdjustment: full length include all data and read 9 bytes before, so the left length is (fullLength-9). so values is -9
-        // initialBytesToStrip: we will check magic code and version manually, so do not strip any bytes. so values is 0
+        // lengthFieldOffset: 魔数是4B，版本是1B，所以值为5
+        // lengthFieldLength: 数据长度为4B，是指版本后面的所有数据的长度，值为4
+        // lengthAdjustment: 从版本后面开始9B是固定数据，数据的开始偏移量为lengthFieldLength-9，值为-9
+        // initialBytesToStrip: 手动检验魔数和版本，所以值为0
         this(RpcConstants.MAX_FRAME_LENGTH, 5, 4, -9, 0);
     }
 
     /**
-     * @param maxFrameLength      Maximum frame length. It decide the maximum length of data that can be received.
-     *                            If it exceeds, the data will be discarded.
-     * @param lengthFieldOffset   Length field offset. The length field is the one that skips the specified length of byte.
-     * @param lengthFieldLength   The number of bytes in the length field.
-     * @param lengthAdjustment    The compensation value to add to the value of the length field
-     * @param initialBytesToStrip Number of bytes skipped.
-     *                            If you need to receive all of the header+body data, this value is 0
-     *                            if you only want to receive the body data, then you need to skip the number of bytes consumed by the header.
+     * @param maxFrameLength      数据的最大长度，如果超过，会被丢弃，单位为B
+     * @param lengthFieldOffset   长度字段偏移，跳过指定长度的数据，固定为5，单位为B
+     * @param lengthFieldLength   长度字段的字节数，固定为4，单位为B
+     * @param lengthAdjustment    定位到数据的偏移量，固定为-9
+     * @param initialBytesToStrip 接收数据时需要跳过的字节数，单位为B，全部接收，固定为0，只想接收body数据，固定为16（跳过头部）固定为16
      */
     public RpcMessageDecoder(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength,
                              int lengthAdjustment, int initialBytesToStrip) {

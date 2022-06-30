@@ -76,10 +76,10 @@ public class ConsistentHashLoadBalance extends AbstractLoadBalance {
     @Override
     protected String doSelect(List<String> serviceAddresses, RpcRequest rpcRequest) {
         int identityHashCode = System.identityHashCode(serviceAddresses);
-        // build rpc service name by rpcRequest
+        // 通过rpc请求构建rpc服务
         String rpcServiceName = rpcRequest.getRpcServiceName();
         ConsistentSelector consistentSelector = selectors.get(rpcServiceName);
-        // check for updates
+        // 检查更新
         if (consistentSelector == null || consistentSelector.identityHashCode != identityHashCode) {
             selectors.put(rpcServiceName, new ConsistentSelector(serviceAddresses, 160, identityHashCode));
             consistentSelector = selectors.get(rpcServiceName);

@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * store and get Channel object
  * 存储和获取通道对象
  */
 @Slf4j

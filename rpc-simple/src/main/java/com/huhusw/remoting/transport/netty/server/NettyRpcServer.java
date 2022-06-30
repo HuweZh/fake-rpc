@@ -26,8 +26,7 @@ import java.net.InetAddress;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Server. Receive the client message, call the corresponding method according to the client message,
- * and then return the result to the client.
+ * 接收客户端消息，根据客户端消息调用相关方法，并返回结果给客户端
  */
 @Slf4j
 @Component
